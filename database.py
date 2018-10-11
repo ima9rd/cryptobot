@@ -3,7 +3,7 @@ from sqlalchemy.orm.query import Query
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, create_engine, Float, DateTime, Boolean
 import datetime
-
+from cred import db_user, db_password, db_address, db_port
 
 base = declarative_base()
 
@@ -69,7 +69,7 @@ class Database:
 
     def __init__(self, base):
         self.base = base
-        self.db_name ='mysql+pymysql://sample:user@server:port/'
+        self.db_name ='mysql+pymysql://{0}:{1}@{2}:{3}/'.format(db_user, db_password, db_address, db_port)
         self.engine = create_engine(self.db_name, pool_recycle=3600)
         self.DBSession = scoped_session(sessionmaker())
         self.DBSession.configure(bind=self.engine, autoflush=False, expire_on_commit=False)
@@ -155,7 +155,5 @@ class Database:
 
 
 if __name__ == '__main__':
-    db = Database(base)
-    db.create_tables()
-    coins = ['ETH', 'LTC', 'BNB', 'NEO', 'BCC', 'GAS', 'BTC', 'ETH', 'OAX', 'DNT', 'ICN', 'MCO', 'WTC', 'WTC', 'QTU', 'ZRX', 'ZRX', 'STR', 'STR', 'SNG', 'KNC', 'FUN', 'IOT', 'XVG', 'XVG', 'CTR', 'SAL', 'SAL', 'MDA', 'MTL', 'SUB', 'SUB', 'EOS', 'SNT', 'ENG', 'ENG', 'ZEC', 'BNT', 'DAS', 'ICN', 'BTG', 'BTG', 'EVX', 'REQ', 'REQ', 'HSR', 'TRX', 'TRX', 'POW', 'ARK', 'ARK', 'XRP', 'XRP', 'MOD', 'MOD', 'ENJ', 'ENJ', 'STO', 'BNB', 'VEN', 'VEN', 'KMD', 'RCN', 'NUL', 'RDN', 'RDN', 'RDN', 'XMR', 'DLT', 'AMB', 'AMB', 'BCC', 'BCC', 'BAT', 'ARN', 'CDT', 'POE', 'POE', 'QSP', 'BTS', 'BTS', 'XZC', 'LSK', 'TNT', 'FUE', 'MAN', 'BCD', 'BCD', 'DGD', 'ADX', 'ADX', 'ADA', 'PPT', 'CMT', 'XLM', 'XLM', 'CND', 'CND', 'LEN', 'LEN', 'WAB', 'WAB', 'LTC', 'TNB', 'GTO', 'ICX', 'ICX', 'OST', 'ELF', 'ELF', 'AIO', 'NEB', 'BRD', 'BRD', 'EDO', 'TRI', 'TRI', 'APP', 'APP']
+    print('This script can not run as a stand alone script - Please run bot.py')
 

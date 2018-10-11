@@ -2,15 +2,15 @@ import tweepy
 import textblob
 import json
 from datetime import datetime
-
+from cred import twitter_consumer_key, twitter_consumer_secret, twitter_access_token, twitter_access_token_secret
 
 class TwitterStreamListener(tweepy.StreamListener):
     def __init__(self, listener=None):
         self.twitter_secrets = {
-            'consumer_key': 'key'
-            , 'consumer_secret': 'secret'
-            , 'access_token': 'token'
-            , 'access_token_secret': 'token_secret'
+            'consumer_key': twitter_consumer_key
+            , 'consumer_secret': twitter_consumer_secret
+            , 'access_token': twitter_access_token
+            , 'access_token_secret': twitter_access_token_secret
         }
         self.listener = listener
         self.coin_dict = {}
@@ -71,4 +71,5 @@ class TwitterStreamListener(tweepy.StreamListener):
 
 
 if __name__ == '__main__':
-    stream = TwitterStreamListener()
+    print('This script can not run as a stand alone script - Please run bot.py')
+    

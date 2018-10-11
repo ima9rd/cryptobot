@@ -1,13 +1,14 @@
 from binance.client import Client
 from binance.websockets import BinanceSocketManager
 import datetime
+from cred import binance_key, binance_secret
 
 
 class BinanceStreamListener:
 
     def __init__(self, listener, update_function, twitter):
-        self._binance_key = 'binance_key'
-        self._binance_secret = 'binance_secret'
+        self._binance_key = binance_key
+        self._binance_secret = binance_secret
         self.twitter = twitter
         self.update_function = update_function
         self.listener = listener
@@ -150,4 +151,5 @@ class BinanceStreamListener:
 
 
 if __name__ == '__main__':
-    binance = BinanceStreamListener(['XRP', 'BTC', 'BCC', 'TRX'])
+    print('This script can not run as a stand alone script - Please run bot.py')
+
