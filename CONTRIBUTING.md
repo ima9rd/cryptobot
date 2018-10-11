@@ -1,0 +1,1 @@
+To contribute, create a branch in which to develop your functionality. Once your implementation is complete, submit a pull request to master for your branch. I will review your pull request and merge if no issues are found.
