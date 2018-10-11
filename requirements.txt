@@ -1,0 +1,5 @@
+binance
+pymssql
+textblob
+tweepy
+sqlalchemy
