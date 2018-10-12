@@ -73,6 +73,9 @@ class Database:
         self.engine = create_engine(self.db_name, pool_recycle=3600)
         self.DBSession = scoped_session(sessionmaker())
         self.DBSession.configure(bind=self.engine, autoflush=False, expire_on_commit=False)
+        for table in ['SentimentValueFact', 'CoinDim', 'AggTradeValueFact', 'TickerValueFact']:
+            if not self.engine.dialect.has_table(self.engine, table):
+                self.create_tables()
 
     def add_sentiment(self, coin_id, subjectivity_value, sentiment_value, source_dttm, source):
         row = SentimentRow()
@@ -144,7 +147,6 @@ class Database:
                 self.DBSession.commit()
 
     def create_tables(self):
-        self.base.metadata.drop_all(self.engine)
         self.base.metadata.create_all(self.engine)
 
     def get_coins(self):
