@@ -3,7 +3,7 @@ from sqlalchemy.orm.query import Query
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, create_engine, Float, DateTime, Boolean
 import datetime
-from cred import db_user, db_password, db_address, db_port
+from cred import db_user, db_password, db_address, db_port, db_name
 
 base = declarative_base()
 
@@ -69,7 +69,7 @@ class Database:
 
     def __init__(self, base):
         self.base = base
-        self.db_name ='mysql+pymysql://{0}:{1}@{2}:{3}/'.format(db_user, db_password, db_address, db_port)
+        self.db_name ='mysql+pymysql://{0}:{1}@{2}:{3}/{4}'.format(db_user, db_password, db_address, db_port, db_name)
         self.engine = create_engine(self.db_name, pool_recycle=3600)
         self.DBSession = scoped_session(sessionmaker())
         self.DBSession.configure(bind=self.engine, autoflush=False, expire_on_commit=False)
